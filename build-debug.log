@@ -1,0 +1,26 @@
+DepthImageRenderer.cpp: In member function ‘Scalar DepthImageRenderer::intersectLine(const Point&, const Point&, Scalar, Scalar) const’:
+DepthImageRenderer.cpp:257:16: warning: unused variable ‘lambda0’ [-Wunused-variable]
+  257 |         Scalar lambda0=Scalar(0);
+      |                ^~~~~~~
+DepthImageRenderer.cpp:258:16: warning: unused variable ‘lambda1’ [-Wunused-variable]
+  258 |         Scalar lambda1=Scalar(1);
+      |                ^~~~~~~
+HandExtractor.cpp: In member function ‘void HandExtractor::extractHands(const DepthPixel*, HandExtractor::HandList&, Images::RGBImage*)’:
+HandExtractor.cpp:573:13: warning: unused variable ‘exitDist2’ [-Wunused-variable]
+  573 |         int exitDist2=Math::sqr(minCornerExitDist);
+      |             ^~~~~~~~~
+/usr/bin/ld: cannot find -lVrui.g++-3.g0.O3: No such file or directory
+/usr/bin/ld: cannot find -lKinect.g++-3.g0.O3: No such file or directory
+/usr/bin/ld: cannot find -lGLMotif.g++-3.g0.O3: No such file or directory
+/usr/bin/ld: cannot find -lImages.g++-3.g0.O3: No such file or directory
+/usr/bin/ld: cannot find -lGLSupport.g++-3.g0.O3: No such file or directory
+/usr/bin/ld: cannot find -lGLWrappers.g++-3.g0.O3: No such file or directory
+/usr/bin/ld: cannot find -lGLGeometry.g++-3.g0.O3: No such file or directory
+/usr/bin/ld: cannot find -lGeometry.g++-3.g0.O3: No such file or directory
+/usr/bin/ld: cannot find -lMath.g++-3.g0.O3: No such file or directory
+/usr/bin/ld: cannot find -lComm.g++-3.g0.O3: No such file or directory
+/usr/bin/ld: cannot find -lThreads.g++-3.g0.O3: No such file or directory
+/usr/bin/ld: cannot find -lMisc.g++-3.g0.O3: No such file or directory
+/usr/bin/ld: cannot find -lIO.g++-3.g0.O3: No such file or directory
+/usr/bin/ld: cannot find -lVideo.g++-3.g0.O3: No such file or directory
+collect2: error: ld returned 1 exit status

@@ -1,0 +1,24 @@
+
+=== DEBUG: Starting tool initialization ===
+DEBUG: Initializing GlobalWaterTool...
+DEBUG: GlobalWaterTool initialized successfully
+DEBUG: Initializing LocalWaterTool...
+DEBUG: LocalWaterTool initialized successfully
+DEBUG: Initializing DEMTool...
+DEBUG: DEMTool initialized successfully
+DEBUG: Initializing BathymetrySaverTool...
+DEBUG: BathymetrySaverTool initialized successfully
+
+=== DEBUG: Checking ScriptExecutorTool ===
+DEBUG: Tool manager obtained: YES
+DEBUG: Attempting to load ScriptExecutorTool...
+DEBUG: ScriptExecutorTool loaded successfully!
+  Factory name: Script Executor
+  ScriptExecutorToolFactory found
+
+=== DEBUG: Configured tool classes ===
+DEBUG: Looking for local config at: etc/SARndbox.cfg
+DEBUG: Checking if toolClassNames contains ScriptExecutorTool...
+=== DEBUG: Tool initialization complete ===
+
+Vrui: Screen saver inhibition not supported

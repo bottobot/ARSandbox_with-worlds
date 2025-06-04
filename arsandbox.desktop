@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=AR Sandbox
+Comment=Augmented Reality Sandbox Application
+Icon=applications-science
+Exec=bash -c "cd ~/src/arsandbox-main/bin/ && SARndbox -cp pipe.fifo -uhm -fpv -VruiVerbose"
+Terminal=false
+Categories=Education;Science;
+Keywords=sandbox;augmented;reality;topography;water;simulation;
