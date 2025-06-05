@@ -3,6 +3,37 @@ README for Augmented Reality Sandbox (SARndbox) version 5.0
 Copyright (c) 2012-2025 Oliver Kreylos
 ========================================================================
 
+
+*********************************************************************************
+This is a fork of of the world famous Augmented Reality Sandbox created by Dr. Oliver Kreylos which find right here: https://github.com/orgs/vrui-vr/repositories?
+Along with the other software packages you will need to run it (Vrui and Kinect)
+
+I have made some modifications that add a few interesting functions and included my scripts to run them. 
+Couple of things you should know before using this. It works as is on my system if I download these files directly to my ~/src/arsandbox-main/ folder and then I copy the SARndbox.cfg file to ~/.config/Vrui-13.1/Applications/ folder
+next ```bash
+cd ~/src/arsandbox-main/
+```
+then
+```bash
+make
+```
+After that I open a terminal and navigate to ~/src/arsandbox-main/bin/ and run this command
+```bash
+mkfifo pipe.fifo
+```
+That shoud be it but if you need to run the mkfifo command as sudo then you will need to change the permissions of the pipe file so that any user has read/write
+
+I always run the SARndbox program from a terminal that is already navigated to the /bin folder otherwise it just doesn't work properly and I don't run it as root or superuser either or the config file wont load properly
+
+Feel free to edit the scripts or set it up as you see fit. However if you have never installed this program from the original repo i linked up above and got it all calibrated and running first then I HIGHLY suggest you do that before trying to get this working. 
+
+**Ok FEATURE TIME!**
+Utilizing the very powerful control pipe feature I added the ability to load textures (experimental), change the color of the reflections in the water (waterColorReflections) and have the colormaps of each world cycle the colors which has a fun visual animation (colorCycle).
+
+Keep reading for a more in depth explanation.
+
+
+
 Control Pipe Interface
 ======================
 
