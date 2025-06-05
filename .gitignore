@@ -1,0 +1,24 @@
+# Build artifacts
+o/
+d/
+bin/CalibrateProjector
+bin/SARndbox
+bin/SARndboxClient
+
+# Editor files
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Debug and log files
+*.log
+debug-output*.log
+build-debug.log
+
+# Named pipe file (FIFO)
+pipe.fifo
+
+# Backup files
+*.bak
+*.orig
