@@ -1,161 +1,162 @@
-# 🎮 AR Sandbox Control Pipe - The Fun Way to Control Your Sandbox!
+# AR Sandbox Control Pipe Documentation
 
-Hey there, sandbox enthusiast! 👋 
+## Overview
 
-So you've got your AR Sandbox up and running, and now you want to control it like a boss without restarting the whole thing every time? You've come to the right place! The control pipe is like a remote control for your sandbox - you can change settings on the fly while it's running!
+The control pipe feature enables runtime configuration changes to the AR Sandbox without requiring application restart. This interface allows dynamic modification of visualization parameters, water simulation settings, and texture rendering options through a named pipe mechanism.
 
-## 🚀 Quick Start
+## Quick Start
 
-First, make sure you start your sandbox with the control pipe enabled:
-
-```bash
-./bin/SARndbox -uhm -fpv -cp /tmp/SARndbox.pipe
-```
-
-That `-cp /tmp/SARndbox.pipe` part creates a "pipe" (think of it as a mailbox) where you can send commands.
-
-## 📨 Sending Commands
-
-Once your sandbox is running, you can send it commands from another terminal like this:
+Initialize the AR Sandbox with control pipe functionality:
 
 ```bash
-echo "command parameters" > /tmp/SARndbox.pipe
+./SARndbox -uhm -fpv -cp pipe.fifo
 ```
 
-Easy peasy! 🍋
+The `-cp pipe.fifo` parameter creates a named pipe for command communication. This assumes you're running SARndbox from the bin/ directory where the pipe.fifo file will be created.
 
-## 🎨 Cool Stuff You Can Do
+## Command Interface
 
-### Change Color Schemes
-Bored of the default colors? Switch it up!
+Send commands to the running sandbox instance via the named pipe:
 
 ```bash
-# Go neon!
-echo "colorMap NeonRainbow.cpt" > /tmp/SARndbox.pipe
-
-# Classic rainbow
-echo "colorMap ClassicRainbow.cpt" > /tmp/SARndbox.pipe
-
-# Feeling cosmic?
-echo "colorMap NebulaRealm.cpt" > /tmp/SARndbox.pipe
-
-# Pastel vibes
-echo "colorMap PastelRainbow.cpt" > /tmp/SARndbox.pipe
+echo "command parameters" > pipe.fifo
 ```
 
-### Water Simulation Fun 💧
-Make it rain, change water colors, or just play with physics!
+## Available Commands
+
+### Color Map Configuration
+
+Modify the terrain color scheme during runtime:
 
 ```bash
-# Make it rain harder!
-echo "rainStrength 0.8" > /tmp/SARndbox.pipe
+# Neon color scheme
+echo "colorMap NeonRainbow.cpt" > pipe.fifo
 
-# Speed up the water flow
-echo "waterSpeed 2.0" > /tmp/SARndbox.pipe
+# Classic rainbow gradient
+echo "colorMap ClassicRainbow.cpt" > pipe.fifo
 
-# Change water color (RGB values 0-1)
-echo "waterColor 0.2 0.6 1.0" > /tmp/SARndbox.pipe
+# Nebula color scheme
+echo "colorMap NebulaRealm.cpt" > pipe.fifo
 
-# Make water more transparent
-echo "waterAttenuation 0.5" > /tmp/SARndbox.pipe
-
-# Change how water absorbs into sand
-echo "waterAbsorption 0.3" > /tmp/SARndbox.pipe
-
-# Control evaporation
-echo "evaporationRate 0.001" > /tmp/SARndbox.pipe
+# Pastel color scheme
+echo "colorMap PastelRainbow.cpt" > pipe.fifo
 ```
 
-### Contour Lines 📏
-Want those nice topographic lines? Control them!
+### Water Simulation Parameters
+
+Control water physics and rendering properties:
 
 ```bash
-# Turn on contour lines
-echo "useContourLines on" > /tmp/SARndbox.pipe
+# Adjust rain intensity (0.0-1.0)
+echo "rainStrength 0.8" > pipe.fifo
 
-# Change spacing (in cm)
-echo "contourLineSpacing 5.0" > /tmp/SARndbox.pipe
+# Modify water flow speed multiplier
+echo "waterSpeed 2.0" > pipe.fifo
 
-# Turn them off
-echo "useContourLines off" > /tmp/SARndbox.pipe
+# Set water color (RGB values 0-1)
+echo "waterColor 0.2 0.6 1.0" > pipe.fifo
+
+# Control water transparency
+echo "waterAttenuation 0.5" > pipe.fifo
+
+# Configure water absorption rate
+echo "waterAbsorption 0.3" > pipe.fifo
+
+# Set evaporation rate
+echo "evaporationRate 0.001" > pipe.fifo
 ```
 
-### 🌈 Texture Warping (New Hotness!)
-This is the really cool new feature - you can load images and have them warp with your terrain!
+### Contour Line Settings
+
+Configure topographic contour line display:
 
 ```bash
-# Load a texture (use any image file)
-echo "loadWarpTexture /path/to/your/cool/image.png" > /tmp/SARndbox.pipe
+# Enable contour lines
+echo "useContourLines on" > pipe.fifo
 
-# Turn on texture warping
-echo "useWarpTexture on" > /tmp/SARndbox.pipe
+# Set contour line spacing (in centimeters)
+echo "contourLineSpacing 5.0" > pipe.fifo
 
-# Control how much it warps (0-1)
-echo "warpIntensity 0.7" > /tmp/SARndbox.pipe
-
-# Change the texture size
-echo "textureScale 0.02" > /tmp/SARndbox.pipe
-
-# Set how it blends (0=multiply, 1=overlay, 2=add, 3=replace)
-echo "textureBlendMode 1" > /tmp/SARndbox.pipe
-
-# Make it more transparent
-echo "textureOpacity 0.6" > /tmp/SARndbox.pipe
-
-# Change warp mode (0=follow contours, 1=radial, 2=flow)
-echo "warpMode 0" > /tmp/SARndbox.pipe
+# Disable contour lines
+echo "useContourLines off" > pipe.fifo
 ```
 
-### 🏔️ Geological Features
-Want to simulate rock layers? We got you!
+### Texture Warping System
+
+Apply and control image textures that deform with terrain geometry:
 
 ```bash
-# Create dipping beds (angle strike dip thickness)
-echo "dippingBed 45 0 30 5" > /tmp/SARndbox.pipe
+# Load texture from file
+echo "loadWarpTexture /path/to/your/image.png" > pipe.fifo
 
-# Or folded beds
-echo "foldedDippingBed 45 0 30 10 2" > /tmp/SARndbox.pipe
+# Enable texture warping
+echo "useWarpTexture on" > pipe.fifo
 
-# Change bed thickness
-echo "dippingBedThickness 8" > /tmp/SARndbox.pipe
+# Set warp intensity (0.0-1.0)
+echo "warpIntensity 0.7" > pipe.fifo
+
+# Adjust texture scale factor
+echo "textureScale 0.02" > pipe.fifo
+
+# Configure blend mode (0=multiply, 1=overlay, 2=add, 3=replace)
+echo "textureBlendMode 1" > pipe.fifo
+
+# Set texture opacity (0.0-1.0)
+echo "textureOpacity 0.6" > pipe.fifo
+
+# Select warp mode (0=follow contours, 1=radial, 2=flow)
+echo "warpMode 0" > pipe.fifo
 ```
 
-### 🎯 Color Cycling Animation
-Make your sandbox psychedelic!
+### Geological Feature Simulation
+
+Create geological structure visualizations:
 
 ```bash
-# Start color cycling (speed in degrees/second)
-echo "colorCycle 30" > /tmp/SARndbox.pipe
+# Generate dipping beds (angle strike dip thickness)
+echo "dippingBed 45 0 30 5" > pipe.fifo
 
-# Stop the madness
-echo "colorCycle 0" > /tmp/SARndbox.pipe
+# Create folded beds (angle strike dip thickness fold_count)
+echo "foldedDippingBed 45 0 30 10 2" > pipe.fifo
+
+# Modify bed thickness parameter
+echo "dippingBedThickness 8" > pipe.fifo
 ```
 
-## 🛠️ Pro Tips
+### Color Cycling Animation
 
-1. **Chain Commands**: You can send multiple commands quickly:
+Enable animated color transitions:
+
+```bash
+# Start color cycling (enable flag followed by speed in degrees/second)
+echo "colorCycle 1 30" > pipe.fifo
+
+# Stop color cycling
+echo "colorCycle 0" > pipe.fifo
+```
+
+## Implementation Notes
+
+1. **Command Sequencing**: Multiple commands can be sent in succession:
    ```bash
-   echo "waterSpeed 3.0" > /tmp/SARndbox.pipe
-   echo "rainStrength 1.0" > /tmp/SARndbox.pipe
-   echo "waterColor 0 0.8 0.8" > /tmp/SARndbox.pipe
+   echo "waterSpeed 3.0" > pipe.fifo
+   echo "rainStrength 1.0" > pipe.fifo
+   echo "waterColor 0 0.8 0.8" > pipe.fifo
    ```
 
-2. **Make Scripts**: Check out the example scripts in the `bin/` folder:
-   - `neon.sh` - Quick neon colors
-   - `texture-warp-test.sh` - Full texture warping demo
-   - `next-world.sh` - Cycle through different "worlds"
+2. **Example Scripts**: Reference implementations are provided in the `bin/` directory:
+   - `neon.sh` - Applies neon color configuration
+   - `texture-warp-test.sh` - Demonstrates texture warping functionality
+   - `next-world.sh` - Cycles through predefined visualization presets
 
-3. **Pipe Location**: You can use any path for your pipe, just make sure both the sandbox and your commands use the same path!
+3. **Pipe Location**: The default pipe location is `pipe.fifo` in the bin/ directory. When running SARndbox from the bin/ directory, use this relative path. The pipe path can be customized if needed, but ensure consistency between the sandbox initialization and command execution.
 
-4. **Troubleshooting**: 
-   - If commands aren't working, check if the pipe exists: `ls -la /tmp/SARndbox.pipe`
-   - Make sure the sandbox was started with `-cp` option
-   - Check the sandbox terminal for error messages
+4. **Troubleshooting**:
+   - Verify pipe existence (from bin/ directory): `ls -la pipe.fifo`
+   - Confirm sandbox was started with `-cp pipe.fifo` parameter
+   - Monitor sandbox terminal output for error messages
+   - Ensure all commands are executed from the bin/ directory
 
-## 🎪 Have Fun!
+## Technical Details
 
-The control pipe turns your AR Sandbox into a live performance tool. Change settings on the fly during presentations, create dynamic demonstrations, or just have fun experimenting!
-
-Remember: if you mess something up, just restart the sandbox - it won't bite! 🦈
-
-Happy sandboxing! 🏖️
+The control pipe interface provides real-time parameter modification capabilities for AR Sandbox installations, enabling dynamic presentations and interactive demonstrations without interrupting the visualization process.
